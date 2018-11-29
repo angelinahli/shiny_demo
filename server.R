@@ -1,5 +1,6 @@
 library(shiny)
 library(plotly)
+library(lubridate)
 
 df <- read.csv("canada_clean.csv")
 
@@ -10,16 +11,18 @@ function(input, output) {
         (df$country == input$country) 
         & (df$year >= input$year[1])
         & (df$year <= input$year[2]),],
-      x=~year,
-      y=~immg,
+      x=~date,
+      y=~searches,
       type="scatter",
-      mode="lines"
+      mode="lines",
+      line=list(color="rgb(23,190,187)")
     )
     plt <- layout(
       plt,
-      title="Immigration to Canada",
-      yaxis=list(title="Total Immigration"),
-      xaxis=list(title="Year")
+      font=list(family="Arial, sans-serif"),
+      title="Searches for 'Moving to Canada'",
+      yaxis=list(title="Google Search Volume"),
+      xaxis=list(title="Date", autotick=FALSE, dtick=50, tickangle=90)
     )
   })
 }

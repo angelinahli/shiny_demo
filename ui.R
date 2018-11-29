@@ -14,10 +14,9 @@ maxyr <- max(df$year)
 
 # define ui
 fluidPage(
-  titlePanel("Immigration to Canada"),
+  titlePanel("Moving to Canada"),
   
   sidebarLayout(
-    
     sidebarPanel(
       selectInput(
         "country", 
@@ -38,7 +37,5 @@ fluidPage(
     mainPanel(
       plotlyOutput("plot")
     )
-    
   )
-  
 )

@@ -1,12 +1,12 @@
-library(doBy)
 library(lubridate)
 library(reshape2)
+library(plotly)
 
 # clean data
 df <- read.csv("canada.csv")
 names(df) <- c("date", "US", "Britain")
-df$year <- year(dmy(df$date))
-df <- summaryBy(US + Britain ~ year, data=df, FUN=sum, keep.names=TRUE)
-df <- melt(df, id=c("year"))
-names(df) <- c("year", "country", "immg")
+df$date <- dmy(df$date)
+df <- melt(df, id=c("date"))
+names(df) <- c("date", "country", "searches")
+df$year <- year(df$date)
 write.csv(df, file="canada_clean.csv")
